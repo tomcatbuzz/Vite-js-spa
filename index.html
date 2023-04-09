@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.scss" />
+    <!-- added defer to script needs tested -->
+    <script type="module" src="./main.js" defer></script>
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="spinner"></div>
+    </div>
+    <header>
+      <nav>
+          <ul class="nav-links">
+              <li><a href="/" data-navigation>Home</a></li>
+              <li><a href="/about" data-navigation>About</a></li>
+              <li><a href="/contact" data-navigation>Contact</a></li>
+              <li><a href="https://www.google.com" target="_blank">extern link</a></li>
+          </ul>
+      </nav>
+  </header>
+  <main>
+    <slot name="main">
+      <h1>Index</h1>
+      <p>Welcome to my app!</p>
+    </slot>
+    <aside>
+      <canvas id="webgl" />
+    </aside>
+  </main>
+  <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script></p>
+  </footer>
+    <!-- <script type="module" src="./main.js"></script> -->
+  </body>
+</html>
