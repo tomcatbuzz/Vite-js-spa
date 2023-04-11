@@ -12,6 +12,10 @@ h1, p, a {
     color: aliceblue;
 }
 
+a {
+    text-decoration: none;
+}
+
 h1, p{
     margin-left: 2rem;
 }
@@ -51,8 +55,8 @@ footer {
     // top: 0;
     height: 50%;
     width: 50%;
-    background-color: greenyellow;
-    z-index: 1;
+    background-color: greenyellow !important;
+    z-index: 10;
 }
 
 .rock {
@@ -95,4 +99,13 @@ footer {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.transitionPanel {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background-color: #ffffff;
 }

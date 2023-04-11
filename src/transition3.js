@@ -1,6 +1,7 @@
 // import gsap from 'gsap'
 export function transition() {
   // return new Promise((resolve, reject) => {
+    // original code
       const div = document.createElement('div')
       div.className = 'transition'
       div.style.position = 'fixed'
@@ -11,6 +12,8 @@ export function transition() {
       div.innerHTML = '<span class="rock">Rock On</span>'
       div.style.zIndex = 2
       document.body.appendChild(div)
+
+      // old animation 
       // const tl = gsap.timeline({
       //     onComplete: () => document.body.removeChild(div)
       // })
@@ -31,21 +34,45 @@ export function transition() {
       // });
 
       const wiper = div;
+      // const wiper = document.getElementsByClassName('transitionPanel');
+      console.log(wiper, "element")
 
-      const wiperKeyframes = new KeyframeEffect(
-        wiper, // element to animate
+      // const wiperKeyframes = new KeyframeEffect(
+      //   wiper, // element to animate
+      //   [
+      //     { transform: 'translateX(-100%)', easing: 'ease-in' }, // keyframe
+      //     { transform: 'translateX(0%)' },
+      //     { transform: 'translateX(0%)', easing: 'ease-out'},
+      //     { transform: 'translateX(100%)'} // keyframe
+      //   ],
+      //   { duration: 1800, fill: 'forwards' }, // keyframe options
+        
+      // );
+
+      const wiperIn = new KeyframeEffect(
+        wiper,
         [
           { transform: 'translateX(-100%)', easing: 'ease-in' }, // keyframe
           { transform: 'translateX(0%)' },
-          { transform: 'translateX(0%)', easing: 'ease-out'},
-          { transform: 'translateX(100%)'} // keyframe
         ],
-        { duration: 1800, fill: 'forwards' }, // keyframe options
-        
-      );
+        { duration: 900, fill: 'forwards' }
+      )
 
+      const wiperOut = new KeyframeEffect(
+        wiper,
+        [
+          { transform: 'translateX(0%)', easing: 'ease-out'},
+          { transform: 'translateX(100%)'},
+        ],
+        { duration: 900, fill: 'forwards' }
+      )
+      
       const wiperAnimation = new Animation(
-        wiperKeyframes,
+        // wiperKeyframes,
+        // show(),
+        // hide(),
+        wiperIn,
+        wiperOut,
         document.timeline
       );
 
@@ -54,5 +81,7 @@ export function transition() {
       wiperAnimation.addEventListener('finish', () => {
         document.body.removeChild(div)
       })
+
+      
   // });
 }
