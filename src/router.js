@@ -1,5 +1,6 @@
 export const navigateTo = (url) => {
     history.pushState(null, null, url)
+    // commented to test
     router()
 };
 
@@ -27,6 +28,7 @@ export const router = async () => {
         }
     }
 
+    
     const view = await fetch(match.route.view)
         .then(res => res.text())
         .then(html => {
