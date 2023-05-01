@@ -4,7 +4,7 @@ export function canvas(canvas) {
 
     window.addEventListener("navigation", event => {
         const { page } = event.detail;
-        console.log(event, "navigation")
+        // console.log(event, "navigation")
         if (page === "/") {
             canvas.style.backgroundColor = color[0];
             

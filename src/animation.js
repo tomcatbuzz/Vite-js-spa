@@ -1,4 +1,5 @@
-const fadeContent = document.querySelector('slot[name="main"]')
+// const content = document.getElementById('slot')
+const fadeContent = document.querySelector('h1')
 // const fadeContent = parentElement.innerHTML
 // const fadeContent = document.getElementsByName('main')
 console.log(fadeContent, "SLOT??")
@@ -10,7 +11,7 @@ export const fadePage = () => {
         { opacity: 0 }
     ],
     {
-        duration: 2000,
+        duration: 3000,
         easing: 'ease-out',
         fill: 'forwards'
     }

@@ -5,27 +5,32 @@ import { canvas } from './src/canvas.js'
 // import { transition } from './src/transition2.js'
 import { transition } from './src/transition3.js'
 import { fadePage, unfadePage } from './src/animation.js';
+// import './style.scss'
 
 
 canvas(document.querySelector('#webgl'));
 
 window.addEventListener('popstate', () => {
+    changeNav()
     router()
 })
 
 
 const loaderContainer = document.querySelector('.loader-container');
 window.addEventListener('load', () => {
-    // loaderContainer.classList.add('loader-container-hidden');
     loaderContainer.parentElement.removeChild(loaderContainer);
-
 })
+
+const app = document.querySelector('slot[name="main"]');
+function addPageTransitions(app) {
+    app.classList.add('hidden')
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // const transition = new Transition();
     const navLinks = document.querySelectorAll('[data-navigation]');
     navLinks.forEach(link => {
-        link.addEventListener('click', async (e) => {
+        link.addEventListener('click', (e) => {
             e.preventDefault()
             // new code
             // const url = e.target.href;
@@ -33,12 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // try {
                 new Promise(function (resolve, reject) {
                     // Do an async task
-                        fadePage()
+                        // fadePage()
+                        // console.log(fadePage, 'FADE NOT working')
+                        
                         const url = e.target.href;
                         navigateTo(url);
+                        console.log(e.target, 'EVENT')
+                        transition()
+                        addPageTransitions(app)
+                        // const url = event.destination.url
+                        
                         // navTo(url)
                         // transition()
-                        console.log('Async task complete');
+                        // console.log('Async task complete');
                         resolve();
                     
                 // }).then(function () {
@@ -51,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //     // transition()
                 //     console.log('Promise consumed');
                 }).then(function() {
-                    unfadePage()
+                    // unfadePage()
                     // transition.wiperOut
                     changeNav();
                 }).catch (function(error) {
@@ -80,73 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // original
             // navigateTo(e.target.href)
         })
-        navigation.addEventListener('navigate', event => {
-            console.log(event, 'Nav Event')
-            // const url = event.destination.url
-            console.log(event.destination.url, "TO: NEXT URL")
-            // if (event.destination.url) {
-            //     alert("Destiny")
-            // } 
-            console.log(event.target, "TARGET")
-            console.log(event.currentTarget.currentEntry, "FROM: CURRENT URL")
-            console.log(navigation.currentEntry.url, "ALSO-FROM CURRENT URL")
-            // console.log(navigation.onnavigatesuccess, "NAV SUCCESS")
-            let isTransitioning
-            new Promise(function (resolve) {
-                // const isTransitioning = true
-                if(event.currentTarget.currentEntry) {
-                isTransitioning = true
-                console.log(isTransitioning, "transitoning")
-                }
-                resolve()
-            }).then(() => {
-                if(event.destination.url) {
-                    isTransitioning = false
-                    console.log(isTransitioning, "finished transition")
-                }
-                
-            })
-            
-
-            const newDiv = document.createElement('div')
-            newDiv.width
-            newDiv.style.position = 'fixed'
-            newDiv.style.top = 0
-            newDiv.style.right = 0
-            newDiv.style.width = '25%'
-            newDiv.style.height = '25%'
-            newDiv.style.backgroundColor = 'green'
-            newDiv.innerHTML = '<span class="rock">Rock On</span>'
-            newDiv.style.zIndex = 4
-            document.body.appendChild(newDiv)
-            
-            
-        })
-
-        // navigation.addEventListener("navigatesuccess", () => {
-        //     console.log("navigatesuccess");
-        //    
-        // });
-
-       
-        // navigation.addEventListener('navigate', (event) => {
-        //     event.transitionWhile(
-        //       createPageTransition({
-        //         from: navigation.currentEntry.url,
-        //         to: event.destination.url,
-        //       })
-        //     );
-        //   });
-        
-    })
-    
-    router()
-})
-
+    })  
     const nav = document.querySelector('.nav-links');
-    const links = nav.querySelectorAll('a');
+    const links = nav.querySelectorAll('li a');
     function changeNav() {
-        const currentLocation = location.href;
+        const currentLocation = window.location.href;
         const menuLength = links.length;
             for (let i = 0; i < menuLength; i ++) {
                 if(links[i].href === currentLocation) {
@@ -164,9 +114,33 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log(links, 'Links')
             // console.log(currentLocation, 'First Nav'); 
             }
-    }
+    } 
+})
 
+    // const nav = document.querySelector('.nav-links');
+    // const links = nav.querySelectorAll('li a');
+    // function changeNav() {
+    //     const currentLocation = window.location.href;
+    //     const menuLength = links.length;
+    //         for (let i = 0; i < menuLength; i ++) {
+    //             if(links[i].href === currentLocation) {
+    //                 links[i].classList.add('active')
+    //         //   gsap.set(links[i], {
+    //         //     color: '#e74c3c'
+    //         //   });
+    //             } else {
+    //                 links[i].classList.remove('active')
+    //         //   gsap.set(links[i], {
+    //         //     color: 'black'
+    //         //   });
+    //             }
+    //         // for Development
+    //         // console.log(links, 'Links')
+    //         // console.log(currentLocation, 'First Nav'); 
+    //         }
+    // }
 
+    
 // function onComplete() {
 //     navigateTo(url)
 //     console.log('Transition complete');

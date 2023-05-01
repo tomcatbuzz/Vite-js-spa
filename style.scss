@@ -109,3 +109,71 @@ footer {
     z-index: 2;
     background-color: #ffffff;
 }
+
+// slot[name="main"].hidden {
+//     opacity: 0;
+//     // transition: opacity 0.5s;
+//     transition: opacity 4.5s;
+// }
+
+// slot[name="main"].fade-in {
+//     opacity: 1;
+//     transform: scale(1.7); 
+//     color: blue;
+// }
+
+// .hidden {
+//     animation: fade-anim 3s;
+//     animation-timing-function: linear;
+// }
+.hidden {
+    h1, p {
+        // position: absolute;
+        animation: fade-anim 3s, move 2s;
+        animation-timing-function: linear;
+    }
+}
+
+
+@keyframes fade-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes move {
+    from { 
+        transform: translateX(-100%);
+    }
+    to { 
+        transform: translateX(0%); 
+    }
+}
+
+// #slot.hidden {
+//     opacity: 0;
+//     // transition: opacity 0.5s;
+//     transition: opacity 4.5s;
+// }
+
+// #slot.fade-in {
+//     opacity: 1;
+//     transform: scale(1.7); 
+//     color: blue;
+// }
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation: move 2s;
+}
+
+slot h1 {
+    color: blue;
+}

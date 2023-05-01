@@ -10,7 +10,7 @@ export const transition = () => {
       div.style.height = '100%'
       div.style.backgroundColor = 'white'
       div.innerHTML = '<span class="rock">Rock On</span>'
-      div.style.zIndex = 2
+      div.style.zIndex = 100
       document.body.appendChild(div)
 
        // old animation 
@@ -40,8 +40,6 @@ export const transition = () => {
       // Animation api
 
       const wiper = div;
-      // // const wiper = document.getElementsByClassName('transitionPanel');
-      // console.log(wiper, "element")
 
       const wiperKeyframes = new KeyframeEffect(
         wiper, // element to animate
@@ -51,34 +49,13 @@ export const transition = () => {
           { transform: 'translateX(0%)', easing: 'ease-out'},
           { transform: 'translateX(100%)'} // keyframe
         ],
-        { duration: 1800, fill: 'forwards' }, // keyframe options
+        // { duration: 1800, fill: 'forwards' }, // keyframe options
+        { duration: 2500, fill: 'forwards' }, // keyframe options
         
       );
-
-      // const wiperIn = new KeyframeEffect(
-      //   wiper,
-      //   [
-      //     { transform: 'translateX(-100%)', easing: 'ease-in' }, // keyframe
-      //     { transform: 'translateX(0%)' },
-      //   ],
-      //   { duration: 900, fill: 'forwards' }
-      // )
-
-      // const wiperOut = new KeyframeEffect(
-      //   wiper,
-      //   [
-      //     { transform: 'translateX(0%)', easing: 'ease-out'},
-      //     { transform: 'translateX(100%)'},
-      //   ],
-      //   { duration: 900, fill: 'forwards' }
-      // )
       
       const wiperAnimation = new Animation(
         wiperKeyframes,
-        // show(),
-        // hide(),
-        // wiperIn,
-        // wiperOut,
         document.timeline
       );
 

@@ -27,23 +27,34 @@ export const router = async () => {
             isMatch: true
         }
     }
-
-    
+    // COMMENTED TO TEST <---working
+    // function addPageTransitions(app) {
+    //     app.classList.add('hidden')
+    // }
     const view = await fetch(match.route.view)
         .then(res => res.text())
         .then(html => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-
+            console.log(doc, "WHATS up DOC")
             const app = document.querySelector('slot[name="main"]');
             app.innerHTML = doc.querySelector('slot[name="main"]').innerHTML;
+            // NEW CODE from gpt
+            app.style.fontStyle = 'italic'
+            // addPageTransitions(app)
+            let content = document.getElementById('slot')
+            console.log(content.children, "Children")
+            console.log(app, "APP from router")
 
             const title = doc.querySelector('title').textContent;
             document.title = title;
         })
-        .then(() => {
-            const event = new CustomEvent('navigation', { detail: { page: location.pathname } });
-            window.dispatchEvent(event);
-        })
+        // .then(() => {
+        //     const event = new CustomEvent('navigation', { detail: { page: location.pathname } });
+        //     window.dispatchEvent(event);
+        // })
         .catch(error => console.log(error));
+    // function addPageTransitions(app) {
+    //     app.classList.add('fade-in')
+    // }
 }

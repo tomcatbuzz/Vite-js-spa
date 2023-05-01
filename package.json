@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "vite": "^4.2.0"
   },
   "dependencies": {
